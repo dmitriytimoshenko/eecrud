@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:dataTable id="mes" value="#{messagesCDI.allMessages}"  var="messages">
+            <p:column headerText="Размер">
+                <h:outputText value="#{messages.size}"/>
+            </p:column>
+            <p:column headerText="Есть вложение">
+                <h:outputText value="#{messages.isaddition}"/>
+            </p:column>
+            <p:column headerText="Дата отправки">
+                <h:outputText value="#{messages.senddate}"/>
+            </p:column>
+            <p:column headerText="Протокол">
+                <h:outputText value="#{messages.protocols}"/>
+            </p:column>
+            <p:column headerText="Вложение">
+                <h:outputText value="#{messages.additions}"/>
+            </p:column>
+            <p:column headerText="Содержимое">
+                <h:outputText value="#{messages.messageData}"/>
+            </p:column>
+        </p:dataTable>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2" >
+            <p:row>
+                <h:outputText value="Размер: "/>
+                <p:inputText value="#{messagesCDI.size}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Есть вложение: "/>
+                <p:inputText value="#{messagesCDI.isaddition}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Дата отправки: "/>
+                <p:inputText value="#{messagesCDI.senddate}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Протокол: "/>
+                <p:inputText value="#{messagesCDI.id_protocols}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Вложение: "/>
+                <p:inputText value="#{messagesCDI.id_additions}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Содержимое: "/>
+                <p:inputText value="#{messagesCDI.id_messageData}"/>
+            </p:row>
+            <h:commandButton value="Добавить запись" action="#{messagesCDI.createMessages()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <h:dataTable value="#{messagesCDI.messages}"  var="selectmess">
+            <p:column headerText="Размер">
+                <h:outputText value="#{selectmess.size}"/>
+            </p:column>
+            <p:column headerText="Есть вложение">
+                <h:outputText value="#{selectmess.isaddition}"/>
+            </p:column>
+            <p:column headerText="Дата отправки">
+                <h:outputText value="#{selectmess.senddate}"/>
+            </p:column>
+        </h:dataTable>
+
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Размер: "/>
+                <p:inputText value="#{messagesCDI.searchsize}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Есть вложение: "/>
+                <p:inputText value="#{messagesCDI.searchisaddition}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Дата отправки: "/>
+                <p:inputText value="#{messagesCDI.searchsenddate}"/>
+            </p:row>
+            <h:commandButton value="Найти запись" action="#{messagesCDI.getMessages()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Размер: "/>
+                <p:inputText value="#{messagesCDI.delsize}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Есть вложение: "/>
+                <p:inputText value="#{messagesCDI.delisaddition}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Дата отправки: "/>
+                <p:inputText value="#{messagesCDI.delsenddate}"/>
+            </p:row>
+            <h:commandButton value="Удалить запись" action="#{messagesCDI.delMessages()}"/>
+        </p:panelGrid>
+
+
+        <br/>
+        <br/>
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Размер(старое значение): "/>
+                <p:inputText value="#{messagesCDI.oldsize}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Размер(новое значение): "/>
+                <p:inputText value="#{messagesCDI.newsize}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Есть вложение(старое значение): "/>
+                <p:inputText value="#{messagesCDI.oldisaddition}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Есть вложение(новое значение): "/>
+                <p:inputText value="#{messagesCDI.newisaddition}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Дата отправки(старое значение): "/>
+                <p:inputText value="#{messagesCDI.oldsenddate}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Дата отправки(новое значение): "/>
+                <p:inputText value="#{messagesCDI.newsenddate}"/>
+            </p:row>
+            <h:commandButton value="Обновить запись" action="#{messagesCDI.updateMessages()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <p:commandButton value="Экспорт в PDF" ajax="false">
+            <p:dataExporter type="pdf" target="mes" fileName="Messages"/>
+        </p:commandButton>
+        <br></br>
+        <br></br>
+        <a href="Main.xhtml">Главная</a>
+    </h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:dataTable id="rul" value="#{rulesCDI.allRules}"  var="rules">
+            <p:column headerText="Имя привилегии">
+                <h:outputText value="#{rules.rlname}"/>
+            </p:column>
+            <p:column headerText="Активность">
+                <h:outputText value="#{rules.isactive}"/>
+            </p:column>
+        </p:dataTable>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2" >
+            <p:row>
+                <h:outputText value="Имя привилегии"/>
+                <p:inputText value="#{rulesCDI.rlname}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность: "/>
+                <p:inputText value="#{rulesCDI.isactive}"/>
+            </p:row>
+            <h:commandButton value="Добавить запись" action="#{rulesCDI.createRules()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <h:dataTable value="#{rulesCDI.rules}"  var="selectrule">
+            <p:column headerText="Имя привилегии">
+                <h:outputText value="#{selectrule.rlname}"/>
+            </p:column>
+            <p:column headerText="Активность">
+                <h:outputText value="#{selectrule.isactive}"/>
+            </p:column>
+        </h:dataTable>
+
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Имя привилегии: "/>
+                <p:inputText value="#{rulesCDI.searchrlname}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность: "/>
+                <p:inputText value="#{rulesCDI.searchisactive}"/>
+            </p:row>
+            <h:commandButton value="Найти запись" action="#{rulesCDI.getRules()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Имя привилегии: "/>
+                <p:inputText value="#{rulesCDI.delrlname}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность: "/>
+                <p:inputText value="#{rulesCDI.delisactive}"/>
+            </p:row>
+            <h:commandButton value="Удалить запись" action="#{rulesCDI.delRules()}"/>
+        </p:panelGrid>
+
+
+        <br/>
+        <br/>
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Имя привилегии(старое значение): "/>
+                <p:inputText value="#{rulesCDI.oldrlname}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Имя привилегии(новое значение): "/>
+                <p:inputText value="#{rulesCDI.newrlname}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность(старое значение): "/>
+                <p:inputText value="#{rulesCDI.oldisactive}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность(новое значение): "/>
+                <p:inputText value="#{rulesCDI.newisactive}"/>
+            </p:row>
+            <h:commandButton value="Обновить запись" action="#{rulesCDI.updateRules()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <p:commandButton value="Экспорт в PDF" ajax="false">
+            <p:dataExporter type="pdf" target="rul" fileName="Rules"/>
+        </p:commandButton>
+        <br></br>
+        <br></br>
+        <a href="Main.xhtml">Главная</a>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+
+
+</h:head>
+
+<h:body>
+    <h:form>
+    <p:dataTable id="prot" value="#{protocolsCDI.allProt}"  var="protocols">
+        <p:column headerText="Тип протокола" width="20px">
+            <h:outputText value="#{protocols.type}"/>
+        </p:column>
+    </p:dataTable>
+
+    <br/>
+
+
+        <p:panelGrid columns="3">
+            <h:outputText value="Тип протокола: "/>
+            <p:inputText value="#{protocolsCDI.type}"/>
+            <h:commandButton value="Добавить запись" action="#{protocolsCDI.createProt()}"/>
+        </p:panelGrid>
+
+    <br/>
+
+        <h:dataTable value="#{protocolsCDI.prot}"  var="selectprot">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Тип протокола"/>
+                </f:facet>
+                <h:outputText value="#{selectprot.type}"/>
+            </h:column>
+        </h:dataTable>
+
+
+        <br/>
+
+
+        <h:panelGrid columns="2">
+            <h:outputText value="Тип протокола: "/>
+            <p:inputText  value="#{protocolsCDI.searchtype}"/>
+            <h:commandButton value="Найти" action="#{protocolsCDI.getProt()}" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+            <h:outputText value="Тип протокола: "/>
+            <p:inputText  value="#{protocolsCDI.deltype}"/>
+            <h:commandButton value="Удалить" action="#{protocolsCDI.delProt()}" />
+        </h:panelGrid>
+
+        <br/>
+
+        <h:panelGrid columns="2">
+            <h:outputText value="Тип протокола(старое значение): "/>
+            <p:inputText  value="#{protocolsCDI.oldtype}"/>
+
+            <h:outputText value="Тип протокола(новое значение): "/>
+            <p:inputText  value="#{protocolsCDI.newtype}"/>
+
+            <h:commandButton value="Обновить" action="#{protocolsCDI.updateProt()}" />
+            </h:panelGrid>
+
+       <br/>
+
+        <p:commandButton value="Экспорт в PDF" ajax="false">
+            <p:dataExporter type="pdf" target="prot" fileName="Protocols"/>
+        </p:commandButton>
+        <br></br>
+        <br></br>
+        <a href="Main.xhtml">Главная</a>
+    </h:form>
+</h:body>
+</html>

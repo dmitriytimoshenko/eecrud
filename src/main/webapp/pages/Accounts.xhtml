@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:dataTable id="acc" value="#{accountsCDI.allAcc}"  var="accounts">
+            <p:column headerText="Логин">
+            <h:outputText value="#{accounts.login}"/>
+        </p:column>
+            <p:column headerText="Пароль">
+                <h:outputText value="#{accounts.password}"/>
+            </p:column>
+            <p:column headerText="Активность">
+                <h:outputText value="#{accounts.isactive}"/>
+            </p:column>
+            <p:column headerText="ID домена">
+                <h:outputText value="#{accounts.domains}"/>
+            </p:column>
+            <p:column headerText="ID привилегии">
+                <h:outputText value="#{accounts.rules}"/>
+            </p:column>
+            <p:column headerText="ID отправителя">
+                <h:outputText value="#{accounts.messagesfrom}"/>
+            </p:column>
+            <p:column headerText="ID получателя">
+                <h:outputText value="#{accounts.messagesto}"/>
+            </p:column>
+        </p:dataTable>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2" >
+            <p:row>
+                <h:outputText value="Логин: "/>
+                <p:inputText value="#{accountsCDI.login}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Пароль: "/>
+                <p:inputText value="#{accountsCDI.password}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность: "/>
+                <p:inputText value="#{accountsCDI.isactive}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="ID домена: "/>
+                <p:inputText value="#{accountsCDI.id_domains}"/>
+             </p:row>
+            <p:row>
+                <h:outputText value="ID привилегии: "/>
+                <p:inputText value="#{accountsCDI.id_rules}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="ID отправителя: "/>
+                <p:inputText value="#{accountsCDI.id_messagesfrom}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="ID получателя: "/>
+                <p:inputText value="#{accountsCDI.id_messagesto}"/>
+            </p:row>
+            <h:commandButton value="Добавить запись" action="#{accountsCDI.createAcc()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <h:dataTable value="#{accountsCDI.acc}"  var="selectacc">
+            <p:column headerText="Логин">
+                <h:outputText value="#{selectacc.login}"/>
+            </p:column>
+            <p:column headerText="Пароль">
+                <h:outputText value="#{selectacc.password}"/>
+            </p:column>
+            <p:column headerText="Активность">
+                 <h:outputText value="#{selectacc.isactive}"/>
+            </p:column>
+            <p:column headerText="ID домена">
+                 <h:outputText value="#{selectacc.domains}"/>
+            </p:column>
+            <p:column headerText="ID привилегии">
+                <h:outputText value="#{selectacc.rules}"/>
+            </p:column>
+            <p:column headerText="От кого">
+                <h:outputText value="#{selectacc.messagesfrom}"/>
+            </p:column>
+            <p:column headerText="Кому">
+                <h:outputText value="#{selectacc.messagesto}"/>
+            </p:column>
+        </h:dataTable>
+
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Логин: "/>
+                <p:inputText value="#{accountsCDI.searchlogin}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Пароль: "/>
+                <p:inputText value="#{accountsCDI.searchpassword}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность: "/>
+                <p:inputText value="#{accountsCDI.searchisactive}"/>
+            </p:row>
+            <h:commandButton value="Найти запись" action="#{accountsCDI.getAcc()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Логин: "/>
+                <p:inputText value="#{accountsCDI.dellogin}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Пароль: "/>
+                <p:inputText value="#{accountsCDI.delpassword}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность: "/>
+                <p:inputText value="#{accountsCDI.delisactive}"/>
+            </p:row>
+            <h:commandButton value="Удалить запись" action="#{accountsCDI.delAcc()}"/>
+        </p:panelGrid>
+
+
+        <br/>
+        <br/>
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Логин(старое значение): "/>
+                <p:inputText value="#{accountsCDI.oldlogin}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Логин(новое значение): "/>
+                <p:inputText value="#{accountsCDI.newlogin}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Пароль(старое значение): "/>
+                <p:inputText value="#{accountsCDI.oldpassword}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Пароль(новое значение): "/>
+                <p:inputText value="#{accountsCDI.newpassword}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность(старое значение): "/>
+                <p:inputText value="#{accountsCDI.oldpassword}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность(новое значение): "/>
+                <p:inputText value="#{accountsCDI.newpassword}"/>
+            </p:row>
+            <h:commandButton value="Обновить запись" action="#{accountsCDI.updateAcc()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <p:commandButton value="Экспорт в PDF" ajax="false">
+            <p:dataExporter type="pdf" target="acc" fileName="Accounts"/>
+        </p:commandButton>
+
+        <br></br>
+        <br></br>
+        <a href="Main.xhtml">Главная</a>
+    </h:form>
+</h:body>
+</html>

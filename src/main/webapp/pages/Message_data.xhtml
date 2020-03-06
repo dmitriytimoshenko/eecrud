@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:dataTable id="md" value="#{message_dataCDI.allMD}"  var="md">
+            <p:column headerText="Текст сообщения">
+                <h:outputText value="#{md.text}"/>
+            </p:column>
+        </p:dataTable>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2" >
+            <p:row>
+                <h:outputText value="Текст сообщения: "/>
+                <p:inputText value="#{message_dataCDI.text}"/>
+            </p:row>
+            <h:commandButton value="Добавить запись" action="#{message_dataCDI.createMD()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <h:dataTable value="#{message_dataCDI.MD}"  var="selectdom">
+            <p:column headerText="Текст сообщения">
+                <h:outputText value="#{selectdom.text}"/>
+            </p:column>
+        </h:dataTable>
+
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Текст сообщения: "/>
+                <p:inputText value="#{message_dataCDI.searchtext}"/>
+            </p:row>
+            <h:commandButton value="Найти запись" action="#{message_dataCDI.getMD()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Текст сообщения: "/>
+                <p:inputText value="#{message_dataCDI.deltext}"/>
+            </p:row>
+            <h:commandButton value="Удалить запись" action="#{message_dataCDI.delMD()}"/>
+        </p:panelGrid>
+
+
+        <br/>
+        <br/>
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Текст сообщения(старое значение): "/>
+                <p:inputText value="#{message_dataCDI.oldtext}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Текст сообщения(новое значение): "/>
+                <p:inputText value="#{message_dataCDI.newtext}"/>
+            </p:row>
+            <h:commandButton value="Обновить запись" action="#{message_dataCDI.updateMD()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <p:commandButton value="Экспорт в PDF" ajax="false">
+            <p:dataExporter type="pdf" target="md" fileName="Message_data"/>
+        </p:commandButton>
+        <br></br>
+        <br></br>
+        <a href="Main.xhtml">Главная</a>
+    </h:form>
+</h:body>
+</html>

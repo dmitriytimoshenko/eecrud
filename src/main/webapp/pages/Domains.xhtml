@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:dataTable id="dom" value="#{domainsCDI.allDomains}"  var="domains">
+            <p:column headerText="Имя">
+                <h:outputText value="#{domains.name}"/>
+            </p:column>
+            <p:column headerText="Активность">
+                <h:outputText value="#{domains.isactive}"/>
+            </p:column>
+            <p:column headerText="Объем">
+                <h:outputText value="#{domains.storesize}"/>
+            </p:column>
+        </p:dataTable>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2" >
+            <p:row>
+                <h:outputText value="Имя: "/>
+                <p:inputText value="#{domainsCDI.name}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность: "/>
+                <p:inputText value="#{domainsCDI.isactive}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Объем: "/>
+                <p:inputText value="#{domainsCDI.storesize}"/>
+            </p:row>
+            <h:commandButton value="Добавить запись" action="#{domainsCDI.createDomains()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <h:dataTable value="#{domainsCDI.domains}"  var="selectdom">
+            <p:column headerText="Имя">
+                <h:outputText value="#{selectdom.name}"/>
+            </p:column>
+            <p:column headerText="Активность">
+                <h:outputText value="#{selectdom.isactive}"/>
+            </p:column>
+            <p:column headerText="Объем">
+                <h:outputText value="#{selectdom.storesize}"/>
+            </p:column>
+        </h:dataTable>
+
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Имя: "/>
+                <p:inputText value="#{domainsCDI.searchname}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность: "/>
+                <p:inputText value="#{domainsCDI.searchisactive}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Объем: "/>
+                <p:inputText value="#{domainsCDI.searchstoresize}"/>
+            </p:row>
+            <h:commandButton value="Найти запись" action="#{domainsCDI.getDomains()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Имя: "/>
+                <p:inputText value="#{domainsCDI.delname}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность: "/>
+                <p:inputText value="#{domainsCDI.delisactive}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Объем: "/>
+                <p:inputText value="#{domainsCDI.delstoresize}"/>
+            </p:row>
+            <h:commandButton value="Удалить запись" action="#{domainsCDI.delDomains()}"/>
+        </p:panelGrid>
+
+
+        <br/>
+        <br/>
+
+        <p:panelGrid columns="2">
+            <p:row>
+                <h:outputText value="Имя(старое значение): "/>
+                <p:inputText value="#{domainsCDI.oldname}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Имя(новое значение): "/>
+                <p:inputText value="#{domainsCDI.newname}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность(старое значение): "/>
+                <p:inputText value="#{domainsCDI.oldisactive}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Активность(новое значение): "/>
+                <p:inputText value="#{domainsCDI.newisactive}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Объем(старое значение): "/>
+                <p:inputText value="#{domainsCDI.oldstoresize}"/>
+            </p:row>
+            <p:row>
+                <h:outputText value="Объем(новое значение): "/>
+                <p:inputText value="#{domainsCDI.newstoresize}"/>
+            </p:row>
+            <h:commandButton value="Обновить запись" action="#{domainsCDI.updateDomains()}"/>
+        </p:panelGrid>
+
+        <br/>
+        <br/>
+
+        <p:commandButton value="Экспорт в PDF" ajax="false">
+            <p:dataExporter type="pdf" target="dom" fileName="Domains"/>
+        </p:commandButton>
+        <br></br>
+        <br></br>
+        <a href="Main.xhtml">Главная</a>
+    </h:form>
+</h:body>
+</html>
